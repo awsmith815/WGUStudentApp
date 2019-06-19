@@ -5,22 +5,25 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.awsmith815.wgustudentapp.database.AppRepo;
+import com.awsmith815.wgustudentapp.database.AppRepository;
 import com.awsmith815.wgustudentapp.model.Term;
-import com.awsmith815.wgustudentapp.util.SampleTermData;
 
 import java.util.List;
 
 public class TermViewModel extends AndroidViewModel {
 
     public List<Term> mTerms;
-    private AppRepo mRepo;
+    private AppRepository mRepo;
 
 
     public TermViewModel(@NonNull Application application) {
         super(application);
 
-        mRepo = AppRepo.getInstance();
+        mRepo = AppRepository.getInstance(application.getApplicationContext());
         mTerms = mRepo.mTerms;
+    }
+
+    public void addSampleData() {
+        mRepo.addSampleData();
     }
 }

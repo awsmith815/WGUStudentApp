@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">WGU Student App</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Add Sample Data</string>
     <string name="mainMenuWelcome">Welcome!</string>
     <string name="mainMenuBtnCourse">Courses</string>
     <string name="mainMenuBtnTerms">Terms</string>

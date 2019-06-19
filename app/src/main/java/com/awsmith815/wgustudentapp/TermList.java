@@ -79,4 +79,8 @@ public class TermList extends AppCompatActivity {
         termList.setAdapter(mAdapter);
     }
 
+    private void addSampleData(){
+        mViewModel.addSampleData();
+    }
+
 }
