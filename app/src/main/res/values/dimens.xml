@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="headerMessageTextViewSize">33dp</dimen>
+    <dimen name="mainMenuBtnTextSize">24dp</dimen>
+    <dimen name="hintTermEdit">28dp</dimen>
+</resources>
