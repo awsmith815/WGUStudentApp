@@ -23,9 +23,9 @@ public class SampleTermData {
 
     public static List<Term> getTerms() {
         List<Term> terms = new ArrayList<>();
-        terms.add(new Term(1, SAMPLE_TERM_1, getDate(0), getDate(1)));
-        terms.add(new Term(2, SAMPLE_TERM_2, getDate(3), getDate(4)));
-        terms.add(new Term(3, SAMPLE_TERM_3, getDate(6), getDate(7)));
+        terms.add(new Term(SAMPLE_TERM_1, getDate(0), getDate(1)));
+        terms.add(new Term(SAMPLE_TERM_2, getDate(3), getDate(4)));
+        terms.add(new Term(SAMPLE_TERM_3, getDate(6), getDate(7)));
         return terms;
     }
 

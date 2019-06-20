@@ -1,11 +1,12 @@
 package com.awsmith815.wgustudentapp.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName="Term")
+@Entity(tableName="term")
 public class Term {
     @PrimaryKey(autoGenerate = true)
     private int termId;
@@ -13,6 +14,12 @@ public class Term {
     private Date termStartDate;
     private Date termEndDate;
 
+    @Ignore
+    public Term(String termName, Date termStartDate, Date termEndDate) {
+        this.termName = termName;
+        this.termStartDate = termStartDate;
+        this.termEndDate = termEndDate;
+    }
 
     //Make sure to ignore constructors that do not accept all values to insert
     public Term(int termId, String termName, Date termStartDate, Date termEndDate) {

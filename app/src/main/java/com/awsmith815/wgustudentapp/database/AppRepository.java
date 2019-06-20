@@ -1,6 +1,7 @@
 package com.awsmith815.wgustudentapp.database;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.awsmith815.wgustudentapp.model.Term;
 import com.awsmith815.wgustudentapp.util.SampleTermData;
@@ -28,6 +29,7 @@ public class AppRepository {
     private AppRepository(Context context) {
         mTerms = SampleTermData.getTerms();
         mDb = AppDatabase.getInstance(context);
+
     }
 
     public void addSampleData() {
