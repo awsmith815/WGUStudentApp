@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +32,7 @@ public class TermList extends AppCompatActivity {
     private TermListAdapter mAdapter;
 
     private TermViewModel mViewModel;
+    private RecyclerView termList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +41,10 @@ public class TermList extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView termList = findViewById(R.id.recyclerViewTermList);
+        termList = findViewById(R.id.recyclerViewTermList);
         assert termList != null;
         initTermList(termList);
         initViewModel();
-
-        termsData.addAll(mViewModel.mTerms);
-        for(Term terms : termsData){
-            Log.i("PlainTermsTest", terms.toString());
-        }
 
 
         FloatingActionButton fab = findViewById(R.id.fabAddTerm);
@@ -86,13 +83,37 @@ public class TermList extends AppCompatActivity {
         if (id == R.id.action_add_sample_data) {
             addSampleData();
             return true;
+        }else if(id == R.id.action_delete_all){
+            deleteAllNotes();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    private void deleteAllNotes() {
+        mViewModel.deleteAllNotes();
+    }
+
     private void initViewModel() {
+        final Observer<List<Term>> termObserver = new Observer<List<Term>>() {
+            @Override
+            public void onChanged(List<Term> terms) {
+                termsData.clear();
+                termsData.addAll(terms);
+
+                if(mAdapter==null){
+                    mAdapter = new TermListAdapter(termsData, TermList.this);
+                    termList.setAdapter(mAdapter);
+                }else{
+                    mAdapter.notifyDataSetChanged();
+                }
+
+            }
+        };
+
         mViewModel = ViewModelProviders.of(this).get(TermViewModel.class);
+        mViewModel.mTerms.observe(this, termObserver);
     }
 
     private void initTermList(RecyclerView termList) {

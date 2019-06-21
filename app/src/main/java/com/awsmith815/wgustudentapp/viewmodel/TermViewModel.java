@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import com.awsmith815.wgustudentapp.database.AppRepository;
 import com.awsmith815.wgustudentapp.model.Term;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class TermViewModel extends AndroidViewModel {
 
-    public List<Term> mTerms;
+    public LiveData<List<Term>> mTerms;
     private AppRepository mRepo;
 
 
@@ -25,5 +26,9 @@ public class TermViewModel extends AndroidViewModel {
 
     public void addSampleData() {
         mRepo.addSampleData();
+    }
+
+    public void deleteAllNotes() {
+        mRepo.deleteAllNotes();
     }
 }

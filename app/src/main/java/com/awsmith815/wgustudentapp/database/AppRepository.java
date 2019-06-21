@@ -3,6 +3,8 @@ package com.awsmith815.wgustudentapp.database;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
 import com.awsmith815.wgustudentapp.model.Term;
 import com.awsmith815.wgustudentapp.util.SampleTermData;
 
@@ -14,7 +16,7 @@ public class AppRepository {
 
     private static AppRepository ourInstance;
 
-    public List<Term> mTerms;
+    public LiveData<List<Term>> mTerms;
     private AppDatabase mDb;
     private Executor executor = Executors.newSingleThreadExecutor();
 
@@ -27,9 +29,8 @@ public class AppRepository {
     }
 
     private AppRepository(Context context) {
-        mTerms = SampleTermData.getTerms();
         mDb = AppDatabase.getInstance(context);
-
+        mTerms = getAllTerms();
     }
 
     public void addSampleData() {
@@ -37,6 +38,18 @@ public class AppRepository {
             @Override
             public void run() {
                 mDb.termDAO().insertAll(SampleTermData.getTerms());
+            }
+        });
+    }
+    private LiveData<List<Term>> getAllTerms(){
+        return mDb.termDAO().getAllTerms();
+    }
+
+    public void deleteAllNotes() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.termDAO().deleteAllTerms();
             }
         });
     }
