@@ -28,7 +28,7 @@ public class TermViewModel extends AndroidViewModel {
         mRepo.addSampleData();
     }
 
-    public void deleteAllNotes() {
-        mRepo.deleteAllNotes();
+    public void deleteAllTerms() {
+        mRepo.deleteAllTerms();
     }
 }

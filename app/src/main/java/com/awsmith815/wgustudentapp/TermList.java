@@ -92,7 +92,7 @@ public class TermList extends AppCompatActivity {
     }
 
     private void deleteAllNotes() {
-        mViewModel.deleteAllNotes();
+        mViewModel.deleteAllTerms();
     }
 
     private void initViewModel() {

@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.awsmith815.wgustudentapp.R;
+import com.awsmith815.wgustudentapp.TermDetail;
 import com.awsmith815.wgustudentapp.TermEditor;
-import com.awsmith815.wgustudentapp.TermList;
 import com.awsmith815.wgustudentapp.model.Term;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -46,6 +46,14 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.ViewHo
         holder.mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(mContext, TermDetail.class);
+                intent.putExtra(TERM_ID_KEY, term.getTermId());
+                mContext.startActivity(intent);
+            }
+        });
+        holder.mFabEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(mContext, TermEditor.class);
                 intent.putExtra(TERM_ID_KEY, term.getTermId());
                 mContext.startActivity(intent);
@@ -62,10 +70,13 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView mTextView;
         FloatingActionButton mFab;
+        FloatingActionButton mFabEdit;
+        FloatingActionButton mFabCourse;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mTextView = itemView.findViewById(R.id.txtTerm);
-            mFab = itemView.findViewById(R.id.fab1);
+            mFab = itemView.findViewById(R.id.fabDetailedViewTermList);
+            mFabEdit = itemView.findViewById(R.id.fabEditTermList);
 
         }
     }

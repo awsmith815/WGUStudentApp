@@ -45,11 +45,33 @@ public class AppRepository {
         return mDb.termDAO().getAllTerms();
     }
 
-    public void deleteAllNotes() {
+    public void deleteAllTerms() {
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 mDb.termDAO().deleteAllTerms();
+            }
+        });
+    }
+
+    public Term getTermById(int termId) {
+        return mDb.termDAO().getTermById(termId);
+    }
+
+    public void insertTerm(final Term term) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.termDAO().insertTerm(term);
+            }
+        });
+    }
+
+    public void deleteTerm(final Term term) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.termDAO().deleteTerm(term);
             }
         });
     }

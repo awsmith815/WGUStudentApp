@@ -14,6 +14,7 @@ public class Term {
     private Date termStartDate;
     private Date termEndDate;
 
+
     @Ignore
     public Term(String termName, Date termStartDate, Date termEndDate) {
         this.termName = termName;
@@ -61,6 +62,7 @@ public class Term {
     public void setTermEndDate(Date termEndDate) {
         this.termEndDate = termEndDate;
     }
+
 
     @Override
     public String toString() {
