@@ -18,6 +18,11 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.awsmith815.wgustudentapp.util.Constants.TERM_ID_KEY;
 
 public class TermEditor extends AppCompatActivity {
@@ -41,7 +46,11 @@ public class TermEditor extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent termIntent = new Intent(getApplicationContext(), TermList.class);
-                saveAndReturn();
+                try {
+                    saveAndReturn();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 startActivity(termIntent);
             }
         });
@@ -57,7 +66,11 @@ public class TermEditor extends AppCompatActivity {
         });
 
         editTermTitle = findViewById(R.id.editTermTitle);
+        editTermStartDate = findViewById(R.id.editTermStartDate);
+        editTermEndDate = findViewById(R.id.editTermEndDate);
         assert editTermTitle != null;
+        assert editTermStartDate != null;
+        assert editTermEndDate != null;
         initViewModel();
 
 
@@ -68,7 +81,10 @@ public class TermEditor extends AppCompatActivity {
         mViewModel.mLiveTerm.observe(this, new Observer<Term>() {
             @Override
             public void onChanged(@Nullable Term term) {
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
                 editTermTitle.setText(term.getTermName());
+                editTermStartDate.setText(dateFormat.format(term.getTermStartDate()));
+                editTermEndDate.setText(dateFormat.format(term.getTermEndDate()));
             }
         });
 
@@ -83,8 +99,11 @@ public class TermEditor extends AppCompatActivity {
         }
     }
 
-    private void saveAndReturn(){
-        mViewModel.saveTerm(editTermTitle.getText().toString());
+    private void saveAndReturn() throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+        Date dateStart = dateFormat.parse(editTermStartDate.getText().toString());
+        Date dateEnd = dateFormat.parse(editTermEndDate.getText().toString());
+        mViewModel.saveTerm(editTermTitle.getText().toString(),dateStart, dateEnd);
         finish();
     }
     private void deleteAndReturn(){

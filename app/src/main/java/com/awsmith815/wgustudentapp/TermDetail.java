@@ -23,6 +23,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,9 +63,10 @@ public class TermDetail extends AppCompatActivity {
         mViewModel.mLiveTerm.observe(this, new Observer<Term>() {
             @Override
             public void onChanged(@Nullable Term term) {
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
                 termTitle.setText(term.getTermName());
-                termStartDate.setText(term.getTermStartDate().toString());
-                termEndDate.setText(term.getTermEndDate().toString());
+                termStartDate.setText(dateFormat.format(term.getTermStartDate()));
+                termEndDate.setText(dateFormat.format(term.getTermEndDate()));
             }
         });
         Bundle extras = getIntent().getExtras();
@@ -71,5 +74,8 @@ public class TermDetail extends AppCompatActivity {
         int termId = extras.getInt(TERM_ID_KEY);
         mViewModel.loadData(termId);
     }
+
+
+
 
 }
