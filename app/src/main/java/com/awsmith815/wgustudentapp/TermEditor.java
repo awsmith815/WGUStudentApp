@@ -81,7 +81,7 @@ public class TermEditor extends AppCompatActivity {
         mViewModel.mLiveTerm.observe(this, new Observer<Term>() {
             @Override
             public void onChanged(@Nullable Term term) {
-                DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
                 editTermTitle.setText(term.getTermName());
                 editTermStartDate.setText(dateFormat.format(term.getTermStartDate()));
                 editTermEndDate.setText(dateFormat.format(term.getTermEndDate()));
@@ -100,7 +100,7 @@ public class TermEditor extends AppCompatActivity {
     }
 
     private void saveAndReturn() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Date dateStart = dateFormat.parse(editTermStartDate.getText().toString());
         Date dateEnd = dateFormat.parse(editTermEndDate.getText().toString());
         mViewModel.saveTerm(editTermTitle.getText().toString(),dateStart, dateEnd);

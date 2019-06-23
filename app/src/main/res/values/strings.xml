@@ -9,4 +9,5 @@
     <string name="title_activity_term_detail">TermDetail</string>
     <string name="title_activity_term_editor">TermEditor</string>
     <string name="action_delete_notes">Delete All</string>
+    <string name="title_activity_course_list">CourseList</string>
 </resources>

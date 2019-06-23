@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.awsmith815.wgustudentapp.CourseList;
 import com.awsmith815.wgustudentapp.R;
 import com.awsmith815.wgustudentapp.TermDetail;
 import com.awsmith815.wgustudentapp.TermEditor;
@@ -59,6 +60,15 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.ViewHo
                 mContext.startActivity(intent);
             }
         });
+        holder.mFabCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, CourseList.class);
+                //add key lookup
+                mContext.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -77,6 +87,7 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.ViewHo
             mTextView = itemView.findViewById(R.id.txtTerm);
             mFab = itemView.findViewById(R.id.fabDetailedViewTermList);
             mFabEdit = itemView.findViewById(R.id.fabEditTermList);
+            mFabCourse = itemView.findViewById(R.id.fabAddCourseTermList);
 
         }
     }

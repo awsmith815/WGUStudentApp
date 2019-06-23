@@ -1,9 +1,14 @@
 package com.awsmith815.wgustudentapp.model;
 
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+
 import java.util.Date;
 
+@Entity(tableName="Course")
 public class Course {
-
+    @PrimaryKey(autoGenerate = true)
     private int courseId;
     private String courseTitle;
     private Date courseStartDate;
