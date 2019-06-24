@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
+import com.awsmith815.wgustudentapp.model.Course;
 import com.awsmith815.wgustudentapp.model.Term;
 import com.awsmith815.wgustudentapp.util.SampleTermData;
 
@@ -74,5 +75,9 @@ public class AppRepository {
                 mDb.termDAO().deleteTerm(term);
             }
         });
+    }
+
+    public Course getCourseByTermId(int courseTermId) {
+        return mDb.courseDAO().getCourseByTermId(courseTermId);
     }
 }

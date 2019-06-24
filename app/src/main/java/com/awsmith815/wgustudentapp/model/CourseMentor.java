@@ -1,7 +1,11 @@
 package com.awsmith815.wgustudentapp.model;
 
-public class CourseMentor {
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "CourseMentor")
+public class CourseMentor {
+    @PrimaryKey(autoGenerate = true)
     private int courseMentorId;
     private String courseMentorName;
     private String courseMentorPhone;
