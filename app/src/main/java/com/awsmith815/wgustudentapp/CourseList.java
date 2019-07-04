@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseList extends AppCompatActivity {
-
+    /*this is the adapter*/
     private CourseListAdapter cAdapter;
     private List<Course> courseData = new ArrayList<>();
     private RecyclerView mCourseRecyclerView;
