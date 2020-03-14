@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent termIntent = new Intent(getApplicationContext(), TermList.class);
-
                 startActivity(termIntent);
             }
         });

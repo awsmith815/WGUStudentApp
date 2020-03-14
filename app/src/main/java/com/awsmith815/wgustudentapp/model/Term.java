@@ -14,6 +14,8 @@ public class Term {
     private Date termStartDate;
     private Date termEndDate;
 
+    @Ignore
+    public Term() { }
 
     @Ignore
     public Term(String termName, Date termStartDate, Date termEndDate) {

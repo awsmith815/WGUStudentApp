@@ -53,11 +53,6 @@ public class TermList extends AppCompatActivity {
             public void onClick(View view) {
                 Intent termIntent = new Intent(getApplicationContext(), TermEditor.class);
                 startActivity(termIntent);
-
-                /**
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                */
             }
         });
 
